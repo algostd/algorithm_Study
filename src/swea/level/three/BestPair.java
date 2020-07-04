@@ -5,7 +5,7 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-//ÃÖ°íÀÇ ½Ö 9839
+// ìµœê³ ì˜ ìŒ 9839
 public class BestPair {
 
     public static void main(String[] args) throws Exception {
