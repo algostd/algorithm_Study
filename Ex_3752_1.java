@@ -19,30 +19,47 @@ public class Ex_3752_1 {
 
 		for (int test_case = 1; test_case <= T; test_case++) {
 
-			// 배열
-			int[] arr = new int[101]; // 받은 시험점수 분포 배열
-			int[] temp = new int[10000]; // 가능한 시험점수 분포
-			
+			// 점수 개수
+			int N = Integer.parseInt(br.readLine());
+
+			int[] score = new int[N]; // 받은 시험점수 분포 배열
+			int sum = 0;
+
 			// 데이터 정리
 			String[] str = br.readLine().split(" ");
-			for (int i = 0; i < str.length; i++) {
-				arr[i] = Integer.parseInt(str[i]);
-				temp[i] = Integer.parseInt(str[i]);
+			for (int i = 0; i < N; i++) {
+				score[i] = Integer.parseInt(str[i]);
+				sum += score[i];
 			}
-			
+
+			int[] AllScore = new int[sum + 1]; // 가능한 시험점수 분포
+			AllScore[0]++;
+
 			// 정렬
-			Arrays.sort(arr);
-			Arrays.sort(temp);
-			
+			// Arrays.sort(score);
+
 			// 검사
-			int cnt = str.length + 1; // 1은 0의 개수를 더한것 
-			for (int i = 0; i < arr.length - 1; i++) {
-				for (int j = i + 1; j < str.length; j++) {
-					
+			int count = 0;
+			for (int i = 0; i < N; i++) {
+				for (int j = AllScore.length - 1; j >= 0; j--) {
+					if (AllScore[j] == 1) {
+						AllScore[j + score[i]] = 1;
+					}
 				}
 			}
 
+			// 개수 세기
+			for (int j = 0; j < AllScore.length; j++) {
+				if (AllScore[j] > 0) {
+					count++;
+				}
+			}
+
+			bw.write("#" + test_case + " " + count + "\n");
 		}
+		bw.flush();
+		br.close();
+		bw.close();
 
 	}
 }
