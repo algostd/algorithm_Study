@@ -1,4 +1,4 @@
-import java.util.Iterator;
+package programmers;
 
 class rotationMatrix {
 	public int[] solution(int rows, int columns, int[][] queries) {
