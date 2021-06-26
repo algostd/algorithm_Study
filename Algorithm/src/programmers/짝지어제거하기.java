@@ -2,10 +2,13 @@ package programmers;
 
 import java.util.Stack;
 
+// Stack 문제로 풀면 O(N)으로 풀 수 있음 
+// 만약 for문 2개로 풀면 어마어마한 시간 복잡도 발생
+
 public class 짝지어제거하기 {
 	public int solution(String s) {
 		int answer = -1;
-		// 홀수면 리풋
+		// 홀수면 리턴
 		if (s.length() % 2 == 1) {
 			return 0;
         }

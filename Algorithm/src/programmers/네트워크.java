@@ -1,5 +1,8 @@
 package programmers;
 
+// https://programmers.co.kr/learn/courses/30/lessons/43162
+// union-find로 풀었음. -> dfs로 풀 수도 있다.
+
 public class 네트워크 {
 
 	// 부모 노드를 찾아줌
