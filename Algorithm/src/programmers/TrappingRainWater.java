@@ -4,19 +4,26 @@ import java.util.Arrays;
 public class TrappingRainWater {
     public int trap(int[] height) {
         int answer = 0;
-        int[] dp = new int[100001];
-        Arrays.fill(dp, -1);
+        int N = height.length;
+        int[] left = new int[N];
+        int[] right = new int[N];
+        int max = 0;
+        for (int i = 0; i < N; i++) { // left
+            if (max < height[i]) {
+                max = height[i];
+            }
+            left[i] = max;
+        }
+        max = 0;
+        for (int i = N-1; i >= 0; i--) { // right
+            if (max < height[i]) {
+                max = height[i];
+            }
+            right[i] = max;
+        }
+        // 정답 도출
         for (int i = 0; i < height.length; i++) {
-            int h = height[i];
-            if(h == 0){
-                continue;
-            }
-            for (int j = 1; j <= h; j++) {
-                if(dp[j] != -1){ // 방문했던 적이 있다면
-                    answer += i - dp[j] - 1;
-                }
-                dp[j] = i;
-            }
+            answer += Math.min(right[i], left[i]) - height[i];
         }
         return answer;
     }
