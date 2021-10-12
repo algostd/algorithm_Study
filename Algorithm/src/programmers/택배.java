@@ -48,14 +48,14 @@ public class 택배 {
         for (int start = 1; start <= N; start++) { // 모든 노드가 시작점이 되봄. 다익스트라
             Arrays.fill(dp, MAX);
             dp[start] = 0;
-            pq.add(new Edge( start, 0));
+            pq.add(new Edge(start, 0));
             while (!pq.isEmpty()) {
                 Edge edge = pq.poll();
                 if (dp[edge.dest] < edge.price) {
                     continue;
                 }
                 for (Edge nextEdge : adjList[edge.dest]) {
-                    int nextPrice = dp[edge.dest] + nextEdge.price;
+                    int nextPrice = edge.price + nextEdge.price;
                     if (nextPrice < dp[nextEdge.dest]) {
                         dp[nextEdge.dest] = nextPrice;
                         pq.add(new Edge(nextEdge.dest, nextPrice));
