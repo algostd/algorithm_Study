@@ -10,14 +10,6 @@ public class Main {
 	private static int[] travelCourse;
 
 	public static void main(String[] args) throws IOException {
-
-		// 3
-		// 3
-		// 0 1 0
-		// 1 0 1
-		// 0 1 0
-		// 1 2 3
-
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
 		M = Integer.parseInt(br.readLine());
@@ -30,7 +22,7 @@ public class Main {
 		//입력
 		for (int i = 0; i < N; i++) {
 			String[] input = br.readLine().split(" ");
-			for (int j = 0; j < N; j++) {
+			for (int j = i + 1; j < N; j++) {
 				int num = Integer.parseInt(input[j]);
 				if (num == 1) {
 					unionParent(i, j);
@@ -72,7 +64,7 @@ public class Main {
 	}
 
 	public static int findParent(int a, int b) {
-		if (parent[a] == parent[b]) {
+		if (getParent(a) == getParent(b)) {
 			return 1;
 		} else {
 			return 0;
