@@ -14,7 +14,7 @@ public class 성냥개비 {
     static final int MAX_FIGURE = 16;
     static final int MAX_STICK = 101;
 
-    static class Stick{
+    static class Stick {
         int num; // 값
         int count; // 개수
 
@@ -54,8 +54,8 @@ public class 성냥개비 {
     private static void getMinDp() {
         for (int i = 2; i <= 100; i++) {
             int figure = (i - 1) / 7 + 1; // 자릿수
-            minDp[0][figure][i] = getDpValue(0, i, 0, figure, "");
-            minDp[1][figure][i] = getDpValue(1, i, 1, figure, "");
+            minDp[0][figure][i] = getDpValue(0, i, figure, "");
+            minDp[1][figure][i] = getDpValue(1, i, figure, "");
         }
     }
 
@@ -88,17 +88,15 @@ public class 성냥개비 {
         }
     }
 
-    // start 는 sticks 를 탐색하는 인덱스 넘버, rest 는 남아있는 성냥개비 개수, toggle 은 첫 값이 0으로 시작할지 1로 시작할지 알려주느 ㄴ값
-    private static String getDpValue(int start, int rest, int toggle, int figure, String str) {
+    // rest 는 남아있는 성냥개비 개수, toggle 은 첫 값이 0으로 시작할지 1로 시작할지 알려주는값
+    private static String getDpValue(int toggle, int rest, int figure, String str) {
         if (rest == 0 || figure == 0) {
             return "";
         }
-        for (int i = start; i < 7; i++) {
+        for (int i = toggle; i < sticks.size(); i++) {
             // 토큰 0일때 dp를 활용
             if (toggle == 0 && !minDp[0][figure][rest].equals("")) {
                 return minDp[0][figure][rest];
-            } else if (toggle == 1 && !minDp[1][figure][rest].equals("")) { // 토큰 1일때 dp를 활용
-                return minDp[1][figure][rest];
             } else { // dp 없으면 dfs 로 찾기
                 // 숫자 선택
                 Stick stick = sticks.get(i);
@@ -109,7 +107,7 @@ public class 성냥개비 {
                 // 선택후 다음 자리 탐색
                 str += stick.num;
                 rest -= stick.count;
-                str += getDpValue(0, rest, 0,figure - 1, str);
+                str += getDpValue(0, rest, figure - 1, str);
                 break;
             }
         }
@@ -127,9 +125,8 @@ public class 성냥개비 {
         sticks.add(new Stick(8, 7));
         // 3, 9는 사용되지 않음
 
-        Collections.sort(sticks, (a,b) -> {
+        Collections.sort(sticks, (a, b) -> {
             return a.num - b.num;
         });
     }
 }
-
