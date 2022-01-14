@@ -22,7 +22,7 @@ public class 부분문자열 {
     // Pattern 문자열 기준, 0부터 해당 인덱스(i)까지 prefix 와 suffix 가 최대 몇 개 일치하는지
     private static void getLongestPreEqualSuf() {
         int equalLength = 0;
-        for (int i = 0; i < pattern.length(); i++) {
+        for (int i = 1; i < pattern.length(); i++) {
             // prefix 와 suffix 가 어긋나는 경우, 일치했던 곳들을 확인학 roll back
             // 어디까지 ? => 어긋난 문자와 일치하는 곳까지 or 0까지
             while (equalLength > 0 && pattern.charAt(equalLength) != pattern.charAt(i)) {
